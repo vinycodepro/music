@@ -1,0 +1,459 @@
+/* Base Styles */
+:root {
+    --primary: #6109AF; /* Purple */
+    --secondary: #09AF61; /* Green */
+    --accent: #F5A623; /* Orange */
+    --dark: #121212;
+    --light: #f8f8f8;
+    --text: #333;
+    --text-light: #f8f8f8;
+    --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--light);
+    color: var(--text);
+    line-height: 1.6;
+    margin-left: 100px; /* Space for fixed nav */
+    transition: all 0.3s ease;
+}
+
+/* Header & Navigation */
+header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    background: var(--dark);
+    color: var(--text-light);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin: 20px 0;
+    font-size: 1.8rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 3px;
+}
+
+#navbar {
+    width: 100%;
+}
+
+#navbar ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+#navbar ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+#navbar ul li a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s;
+}
+
+#navbar ul li a:hover::after {
+    width: 100%;
+}
+
+#navbar ul li a i {
+    font-size: 1.5rem;
+}
+
+/* Sections */
+section {
+    min-height: 100vh;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1));
+    z-index: -1;
+}
+
+section h2 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+    display: inline-block;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50%;
+    height: 4px;
+    background: var(--accent);
+}
+
+section p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+/* Home Section - Redesigned */
+#home {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    padding: 0;
+}
+
+#home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(135deg, rgba(97, 9, 175, 0.8) 0%, rgba(9, 175, 97, 0.6) 100%),
+        url('image/trap.jpg') center/cover no-repeat;
+    z-index: -1;
+    background-blend-mode: overlay;
+}
+
+#home-content {
+    max-width: 800px;
+    padding: 0 20px;
+    animation: fadeInUp 1s ease-out;
+}
+
+#home h2 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: inline-block;
+}
+
+#home h2::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--accent);
+}
+
+#home p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background: var(--accent);
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 2px solid transparent;
+}
+
+.cta-button:hover {
+    background: transparent;
+    color: white;
+    border-color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Animation for home content */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile responsiveness for home */
+@media (max-width: 768px) {
+    #home h2 {
+        font-size: 2.5rem;
+    }
+    
+    #home p {
+        font-size: 1.2rem;
+    }
+    
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+}
+/* Music Section */
+#music {
+    background-color: var(--light);
+}
+
+#music img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    margin-top: 20px;
+}
+
+#youtube div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+#youtube iframe {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(142, 45, 226, 0.5);
+    transition: transform 0.3s ease;
+    width: 360px;
+    height: 215px;
+}
+
+#youtube iframe:hover {
+    transform: scale(1.05);
+}
+
+/* About Section */
+#about {
+    background: var(--gradient);
+    color: var(--text-light);
+}
+
+#about h2 {
+    color: white;
+    -webkit-text-stroke: 1px var(--dark);
+}
+
+/* Events Section */
+#events {
+    background-color: var(--light);
+}
+
+#events ul {
+    list-style: none;
+    margin-top: 30px;
+}
+
+#events ul li {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid var(--accent);
+    transition: transform 0.3s ease;
+}
+
+#events ul li:hover {
+    transform: translateX(10px);
+}
+
+#events ul li strong {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark);
+    color: var(--text-light);
+    padding: 30px;
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 20px;
+}
+
+footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+footer ul li a {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+footer ul li a:hover {
+    color: var(--accent);
+    transform: translateY(-5px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        margin-left: 0;
+        padding-top: 80px;
+    }
+    
+    header {
+        width: 100%;
+        height: 80px;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+    
+    header h1 {
+        writing-mode: horizontal-tb;
+        transform: none;
+        margin: 0;
+        font-size: 1.5rem;
+    }
+    
+    #navbar ul {
+        flex-direction: row;
+        gap: 15px;
+    }
+    
+    #navbar ul li a {
+        font-size: 0;
+    }
+    
+    #navbar ul li a i {
+        font-size: 1.2rem;
+    }
+    
+    section {
+        padding: 40px 20px;
+        min-height: auto;
+    }
+    
+    section h2 {
+        font-size: 2rem;
+    }
+    
+    #home h2 {
+        -webkit-text-stroke: 0;
+        text-shadow: none;
+    }
+    
+    #youtube .video-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 0 10px;
+    }
+    
+    #navbar ul {
+        gap: 10px;
+    }
+    
+    section h2 {
+        font-size: 1.8rem;
+    }
+    
+    section p {
+        font-size: 1rem;
+    }
+    
+    footer ul {
+        gap: 15px;
+    }
+    
+    footer ul li a {
+        font-size: 1.2rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+section {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+section:nth-child(2) { animation-delay: 0.1s; }
+section:nth-child(3) { animation-delay: 0.2s; }
+section:nth-child(4) { animation-delay: 0.3s; }
+section:nth-child(5) { animation-delay: 0.4s; }
